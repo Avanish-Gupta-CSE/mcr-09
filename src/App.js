@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { Toaster } from "react-hot-toast";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import {
+  CategoryVideos,
+  Explore,
+  Home,
+  Playlists,
+  SingleVideo,
+  WatchLater,
+} from "./pages";
+import { Header } from "./components";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/playlists" element={<Playlists />} />
+        <Route path="/watchlater" element={<WatchLater />} />
+        <Route path="/category/:categoryName" element={<CategoryVideos />} />
+        <Route path="/video/:videoId" element={<SingleVideo />} />
+      </Routes>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        containerStyle={{
+          top: "4rem",
+        }}
+      />
     </div>
   );
 }
